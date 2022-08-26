@@ -1,7 +1,7 @@
 public class Empleado {
     private String nombre;
     private String correo;
-    private String empresa;
+    private Empresa empresa;
     private String rol;
 
     public Empleado(String nombre, String correo, String empresa, String rol) {
