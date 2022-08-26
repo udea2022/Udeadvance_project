@@ -1,7 +1,7 @@
 public class MovimientoDinero {
-    private int monto;
+    private double monto;
     private String concepto;
-    private String usuario;
+    private Empleado usuario;
     public MovimientoDinero(int monto, String concepto, String usuario) {
         this.monto = monto;
         this.concepto = concepto;
