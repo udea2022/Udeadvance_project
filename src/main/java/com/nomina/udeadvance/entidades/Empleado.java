@@ -7,16 +7,16 @@ import javax.persistence.*;
 @Table
 public class Empleado {
     @Id
-    protected int documento;
+    private int documento;
     @Column(nullable = false, length= 50)
-    protected String nombre;
+    private String nombre;
     @Column (nullable = false, length = 25, unique = true)
-    protected String correo;
+    private String correo;
     @ManyToOne
     @JoinColumn(name = "empresa_nombre")
-    protected Empresa empresa;
+    private Empresa empresa;
     @Column (nullable = false, length = 15)
-    protected String rol;
+    private String rol;
 
     public Empleado(int documento, String nombre, String correo, Empresa empresa, String rol) {
         this.documento = documento;
