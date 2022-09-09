@@ -7,13 +7,14 @@ import javax.persistence.*;
 @Table
 public class Empleado {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int documento;
     @Column(nullable = false, length= 50)
-    private String nombre;
+    public String nombre;
     @Column (nullable = false, length = 25, unique = true)
     private String correo;
     @ManyToOne
-    @JoinColumn(name = "empresa_nombre")
+    @JoinColumn(name = "empresa_id", referencedColumnName = "id")
     private Empresa empresa;
     @Column (nullable = false, length = 15)
     private String rol;

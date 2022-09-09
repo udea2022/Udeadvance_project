@@ -12,10 +12,10 @@ public class MovimientoDinero {
     @Column(nullable = false,length = 30)
     private String concepto;
     @ManyToOne
-    @JoinColumn(name = "usuario_nombre")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "documento")
     private Empleado usuario;
     @ManyToOne
-    @JoinColumn(name = "empresa_nombre")
+    @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
     public Empresa getEmpresa() {
