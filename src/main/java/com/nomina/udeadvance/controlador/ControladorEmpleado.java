@@ -17,37 +17,37 @@ public class ControladorEmpleado {
     private ServicioImpEmpleado sie;
 
     @GetMapping
-    public List<Empleado> listar(){
+    public List<Empleado> listar() {
         return sie.listarEmpleado();
     }
 
     @GetMapping("/{id}")
-    public Empleado consultar(@PathVariable("id") Integer id){
+    public Empleado consultar(@PathVariable("id") Integer id) {
         return sie.consultarEmpleadoPorId(id);
     }
 
     @PostMapping
-    public Empleado insertar(@RequestBody Empleado empleado){
+    public Empleado insertar(@RequestBody Empleado empleado) {
         return sie.guardarEmpleado(empleado);
     }
 
     @PutMapping
-    public Empleado actualizar(@RequestBody Empleado empleado){
+    public Empleado actualizar(@RequestBody Empleado empleado) {
         return sie.actualizarEmpleado(empleado);
     }
 
     @DeleteMapping
-    public void eliminar(@RequestBody Empleado empleado){
+    public void eliminar(@RequestBody Empleado empleado) {
         sie.eliminarEmpleado(empleado.getDocumento());
     }
 
     @PatchMapping("/{id}")
-    public Empleado actualizarPor(@PathVariable("id")Integer id, @RequestBody Map<Object, Object> objectMap){
-       return sie.actualizarPorId(id, objectMap);
+    public Empleado actualizarPor(@PathVariable("id") Integer id, @RequestBody Map<Object, Object> objectMap) {
+        return sie.actualizarPorId(id, objectMap);
     }
 
     @DeleteMapping("/{id}")
-    public Empleado eliminar(@PathVariable("id") Integer id) {
-        return sie.consultarEmpleadoPorId(id);
+    public void eliminar(@PathVariable("id") Integer id, @RequestBody Empleado empleado) {
+        sie.eliminarEmpleado(empleado.getDocumento());
     }
 }
