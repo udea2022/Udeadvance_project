@@ -3,7 +3,7 @@ package com.nomina.udeadvance.entidades;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Moviiento_Dinero")
+@Table(name="Movimiento_Dinero")
 public class MovimientoDinero {
     @Id
     private long codigo;

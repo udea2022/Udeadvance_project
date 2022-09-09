@@ -26,10 +26,10 @@ public class ServicioImpEmpleado implements ServicioEmpleado{
         return repositorioEmpleado.save(empleado);
     }
 
-    @Override
+    /*@Override
     public Empleado consultarEmpleadoPorId(Integer documento) {
         return repositorioEmpleado.findById(documento).get();
-    }
+    }*/
 
     @Override
     public Empleado actualizarEmpleado(Empleado empleado) {
