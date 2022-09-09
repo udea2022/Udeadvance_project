@@ -10,7 +10,7 @@ public interface ServicioMovimientoDinero {
 
     public MovimientoDinero guardarMovimientoDinero(MovimientoDinero movimientoDinero);
 
-    public MovimientoDinero consultarMovimientoPorId(MovimientoDinero );
+    public MovimientoDinero consultarMovimientoPorId(MovimientoDinero movimientoDinero);
     public MovimientoDinero actualizarMovimientoDinero(MovimientoDinero movimientoDinero);
     public void eliminarMovimientoDinero(Long codigo);
 

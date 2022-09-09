@@ -2,10 +2,13 @@ package com.nomina.udeadvance.entidades;
 
 import javax.persistence.*;
 
+import static javax.persistence.GenerationType.AUTO;
+
 @Entity
 @Table(name="Movimiento_Dinero")
 public class MovimientoDinero {
     @Id
+    @GeneratedValue(strategy = AUTO)
     private long codigo;
     @Column(name="monto",nullable = false)
     private double monto;
