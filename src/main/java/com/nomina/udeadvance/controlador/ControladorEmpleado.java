@@ -14,7 +14,7 @@ import java.util.Map;
 public class ControladorEmpleado {
 
     @Autowired
-    private ServicioImpEmpleado sie;
+    public ServicioImpEmpleado sie;
 
     @GetMapping
     public List<Empleado> listar() {
