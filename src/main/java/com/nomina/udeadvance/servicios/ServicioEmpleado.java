@@ -7,9 +7,9 @@ import java.util.Map;
 public interface ServicioEmpleado {
     public List<Empleado>listarEmpleado();
     public Empleado guardarEmpleado(Empleado empleado);
-    public Empleado consultarEmpleadoPorId(Integer documento);
+    public Empleado consultarEmpleadoPorId(Integer id);
     public Empleado actualizarEmpleado(Empleado empleado);
-    public void eliminarEmpleado(Integer documento);
+    public void eliminarEmpleado(Integer id);
 
     Empleado actualizarPorId(Integer id, Map<Object, Object> objectMap);
 }

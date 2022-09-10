@@ -20,23 +20,23 @@ public class Empleado {
     @JoinColumn(name = "empresa_id", referencedColumnName = "id")
     private Empresa empresa;
 
-    public Empleado(int documento, String nombre, String correo, Empresa empresa, String rol) {
-        this.documento = documento;
-        this.nombre = nombre;
+    public Empleado(int id, String correo, String rol, String nombre, Empresa empresa) {
+        this.id = id;
         this.correo = correo;
-        this.empresa = empresa;
         this.rol = rol;
+        this.nombre = nombre;
+        this.empresa = empresa;
     }
 
     public Empleado() {
     }
 
-    public int getDocumento() {
-        return documento;
+    public int getId() {
+        return id;
     }
 
-    public void setDocumento(int documento) {
-        this.documento = documento;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
