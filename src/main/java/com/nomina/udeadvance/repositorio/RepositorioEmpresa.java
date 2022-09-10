@@ -1,4 +1,7 @@
 package com.nomina.udeadvance.repositorio;
 
-public interface RepositorioEmpresa {
+import com.nomina.udeadvance.entidades.Empresa;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RepositorioEmpresa extends JpaRepository <Empresa, String> {
 }

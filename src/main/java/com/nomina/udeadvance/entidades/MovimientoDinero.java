@@ -9,16 +9,17 @@ import static javax.persistence.GenerationType.AUTO;
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = AUTO)
-    private long codigo;
-    @Column(name="monto",nullable = false)
-    private double monto;
-    @Column(nullable = false,length = 30)
+    private long id;
+    @Column(length = 30,nullable = false)
     private String concepto;
-    @ManyToOne
+    @Column(name="monto", nullable = false)
+    private double monto;
+
+    @OneToMany
     @JoinColumn(name = "usuario_id", referencedColumnName = "documento")
     private Empleado usuario;
-    @ManyToOne
-    @JoinColumn(name = "empresa_id")
+    @OneToMany
+    @JoinColumn(name = "empresa", referencedColumnName = "empresa_id")
     private Empresa empresa;
 
     public Empresa getEmpresa() {

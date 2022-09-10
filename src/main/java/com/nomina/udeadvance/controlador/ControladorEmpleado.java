@@ -22,8 +22,8 @@ public class ControladorEmpleado {
     }
 
     @GetMapping("/{id}")
-    public Empleado consultar(@PathVariable("id") Integer id) {
-        return sie.consultarEmpleadoPorId(id);
+    public Empleado consultar(@PathVariable("id") Integer id, @RequestBody Map<Object, Object> objectMap) {
+        return sie.actualizarPorId(id, objectMap);
     }
 
     @PostMapping
