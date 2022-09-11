@@ -8,19 +8,20 @@ import static javax.persistence.GenerationType.AUTO;
 @Table(name="Movimiento_Dinero")
 public class MovimientoDinero {
     @Id
+    @Column(name = "transaccion")
     @GeneratedValue(strategy = AUTO)
-    private long id;
+    public long id;
     @Column(length = 30,nullable = false)
-    private String concepto;
+    public String concepto;
     @Column(name="monto", nullable = false)
-    private double monto;
+    public double monto;
 
-    @OneToMany
-    @JoinColumn(name = "usuario_id", referencedColumnName = "documento")
-    private Empleado usuario;
-    @OneToMany
-    @JoinColumn(name = "empresa", referencedColumnName = "empresa_id")
-    private Empresa empresa;
+    @ManyToOne
+    @JoinColumn(name = "Empleados", referencedColumnName = "documento")
+    public Empleado usuario;
+    @ManyToOne
+    @JoinColumn(name = "Empresas", referencedColumnName = "nit")
+    public Empresa empresa;
 
     public Empresa getEmpresa() {
         return empresa;
@@ -30,8 +31,8 @@ public class MovimientoDinero {
         this.empresa = empresa;
     }
 
-    public MovimientoDinero(long codigo, double monto, String concepto, Empleado usuario, Empresa empresa) {
-        this.codigo = codigo;
+    public MovimientoDinero(long id, double monto, String concepto, Empleado usuario, Empresa empresa) {
+        this.id = id;
         this.monto = monto;
         this.concepto = concepto;
         this.usuario = usuario;
@@ -41,12 +42,12 @@ public class MovimientoDinero {
     public MovimientoDinero() {
     }
 
-    public long getCodigo() {
-        return codigo;
+    public long getId() {
+        return id;
     }
 
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public double getMonto() {

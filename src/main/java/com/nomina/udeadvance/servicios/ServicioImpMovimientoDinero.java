@@ -1,4 +1,4 @@
-package com.nomina.udeadvance.servicios;
+/*package com.nomina.udeadvance.servicios;
 
 import com.nomina.udeadvance.entidades.MovimientoDinero;
 import com.nomina.udeadvance.repositorio.RepositorioMovDinero;
@@ -49,4 +49,4 @@ public class ServicioImpMovimientoDinero implements ServicioMovimientoDinero {
         });
         return repositorioMovDinero.save(movimientoDinero);
     }
-}
+}*/

@@ -6,57 +6,52 @@ import javax.persistence.*;
 import java.text.DateFormat;
 
 @Entity
-@Table
+@Table(name = "Empresas")
 public class Empresa {
     @Id
-    private Long id;
+    @Column(name = "nit")
+    public int nit;
     @Column(nullable = false, length = 50, unique = true)
-    private String nombre;
-    @Column(nullable = false, length = 30, unique = true)
-    private String documento;
+    public String nombre;
     @Column(nullable = false,length = 30)
-    private String telefono;
+    public String telefono;
     @Column(nullable = false,length = 30)
-    private String direccion;
+    public String direccion;
 
     @ManyToOne
-    @JoinColumn(name = "usuarios", referencedColumnName = "empresa_id")
-    private String usuarios;
+    @JoinColumn(name = "Empleados", referencedColumnName = "documento")
+    public Empleado usuarios;
 
-    @ManyToMany
-    @JoinColumn(name = "transacciones", referencedColumnName = "empresa_id")
-    private String transacciones;
+    @ManyToOne
+    @JoinColumn(name = "Movimiento_Dinero", referencedColumnName = "transaccion")
+    public MovimientoDinero transacciones;
 
-    @Column(nullable = false)
-    private DateFormat createdAt;
-    @Column(nullable = false)
-    private DateFormat updateddAt;
-
-
-    public Empresa(String nombre, String direccion, String telefono, String nit) {
+    public Empresa(int nit, String nombre, String telefono, String direccion, Empleado usuarios, MovimientoDinero transacciones) {
+        this.nit = nit;
         this.nombre = nombre;
-        this.direccion = direccion;
         this.telefono = telefono;
-        this.nombre = nit;
+        this.direccion = direccion;
+        this.usuarios = usuarios;
+        this.transacciones = transacciones;
     }
 
     public Empresa() {
     }
 
+    public int getNit() {
+        return nit;
+    }
+
+    public void setNit(int nit) {
+        this.nit = nit;
+    }
+
     public String getNombre() {
-        return name;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        this.name = nombre;
-    }
-
-    public String getDireccion() {
-        return address;
-    }
-
-    public void setDireccion(String direccion) {
-        this.address = address;
+        this.nombre = nombre;
     }
 
     public String getTelefono() {
@@ -67,11 +62,27 @@ public class Empresa {
         this.telefono = telefono;
     }
 
-    public String getNit() {
-        return nit;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setNit(String nit) {
-        this.nit = nit;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public Empleado getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Empleado usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public MovimientoDinero getTransacciones() {
+        return transacciones;
+    }
+
+    public void setTransacciones(MovimientoDinero transacciones) {
+        this.transacciones = transacciones;
     }
 }

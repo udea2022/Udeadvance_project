@@ -4,24 +4,24 @@ package com.nomina.udeadvance.entidades;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name="Empleados")
 public class Empleado {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Column(name="documento", nullable = false, length = 30, unique = true)
+    public int documento;
     @Column (nullable = false, length = 25, unique = true)
-    private String correo;
+    public String correo;
     @Column (nullable = false, length = 15)
-    private String rol;
+    public String rol;
     @Column(nullable = false, length= 50)
     public String nombre;
 
     @ManyToOne
-    @JoinColumn(name = "empresa_id", referencedColumnName = "id")
-    private Empresa empresa;
+    @JoinColumn(name = "Empresas", referencedColumnName = "nit")
+    public Empresa empresa;
 
-    public Empleado(int id, String correo, String rol, String nombre, Empresa empresa) {
-        this.id = id;
+    public Empleado(int documento, String correo, String rol, String nombre, Empresa empresa) {
+        this.documento = documento;
         this.correo = correo;
         this.rol = rol;
         this.nombre = nombre;
@@ -31,12 +31,12 @@ public class Empleado {
     public Empleado() {
     }
 
-    public int getId() {
-        return id;
+    public int getDocumento() {
+        return documento;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDocumento(int documento) {
+        this.documento = documento;
     }
 
     public String getNombre() {
