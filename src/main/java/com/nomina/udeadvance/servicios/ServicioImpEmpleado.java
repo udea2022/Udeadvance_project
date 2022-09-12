@@ -30,6 +30,7 @@ public class ServicioImpEmpleado implements ServicioEmpleado{
     @Override
     public Empleado consultarEmpleadoPorId(Integer documento) {
         return repositorioEmpleado.findById(documento).get();
+
     }
     /*PATCH/users/documento
     @Override

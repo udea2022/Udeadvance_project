@@ -24,21 +24,22 @@ public class ServicioImpEmpresa implements ServicioEmpresa{
     public Empresa guardarEmpresa(Empresa empresa) {
         return repositorioEmpresa.save(empresa);
     }
+
     /*GET/enterprises/nit*/
     @Override
-    public Empresa consultarEmpresaPorId(String nit) {
+    public Empresa consultarEmpresaPorId(Integer nit) {
         return repositorioEmpresa.getReferenceById(nit);
     }
 
     /*DELETE/enterprises/nit*/
     @Override
-    public Empresa eliminarEmpresa(String nit) {
+    public Empresa eliminarEmpresa(Integer nit) {
         repositorioEmpresa.deleteById(nit);
         return null;
     }
     /*PATCH/enterprises/nit*/
     @Override
-    public Empresa actualizarPorId(String nit, Map<Object, Object> objectMap) {
+    public Empresa actualizarPorId(Integer nit, Map<Object, Object> objectMap) {
         Empresa empresa = repositorioEmpresa.findById(nit).get();
         objectMap.forEach((key,value)->{
             Field field = ReflectionUtils.findField(Empleado.class, (String) key );

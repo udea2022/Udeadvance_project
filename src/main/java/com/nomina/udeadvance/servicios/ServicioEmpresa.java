@@ -8,7 +8,7 @@ import java.util.Map;
 public interface ServicioEmpresa {
     public List<Empresa> listarEmpresa();
     public Empresa guardarEmpresa(Empresa empresa);
-    public Empresa consultarEmpresaPorId(String nit);
-    public Empresa eliminarEmpresa (String nit);
-    Empresa actualizarPorId(String nit, Map<Object, Object> objectMap);
+    public Empresa consultarEmpresaPorId(Integer nit);
+    public Empresa eliminarEmpresa(Integer nit);
+    Empresa actualizarPorId(Integer nit, Map<Object, Object> objectMap);
 }

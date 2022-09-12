@@ -34,21 +34,21 @@ public class ControladorEmpresa {
 
 
     /*GET/enterprises/nit*/
-    @GetMapping("/enterprises/{nit}")
-    public Empresa consultar (@PathVariable("nit") String nit){
+    @GetMapping("/{nit}")
+    public Empresa consultar (@PathVariable("nit") Integer nit){
         return siem.consultarEmpresaPorId(nit);
     }
 
     /*PATCH/enterprises/nit*/
-    @PatchMapping("/enterprises/{nit}")
-    public Empresa actualizarPor(@PathVariable("nit") String nit, @RequestBody Map<Object, Object> objectMap){
+    @PatchMapping("/{nit}")
+    public Empresa actualizarPor(@PathVariable("nit") Integer nit, @RequestBody Map<Object, Object> objectMap){
         return siem.actualizarPorId(nit, objectMap);
     }
 
 
     /*DELETE/enterprises/nit*/
-    @DeleteMapping("/enterprises/{nit}")
-    public void eliminar(@PathVariable("nit") String nit, @RequestBody Empresa empresa){
+    @DeleteMapping("/{nit}")
+    public void eliminar(@PathVariable("nit") Integer nit, @RequestBody Empresa empresa){
         siem.eliminarEmpresa(empresa.getNit());
     }
 }
