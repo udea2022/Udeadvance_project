@@ -1,16 +1,18 @@
 package com.nomina.udeadvance.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.text.DateFormat;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "Empresas")
 public class Empresa {
     @Id
     @Column(name = "nit")
-    public int nit;
+    public String nit;
     @Column(nullable = false, length = 50, unique = true)
     public String nombre;
     @Column(nullable = false,length = 30)
@@ -26,7 +28,7 @@ public class Empresa {
     @JoinColumn(name = "Movimiento_Dinero", referencedColumnName = "transaccion")
     public MovimientoDinero transacciones;
 
-    public Empresa(int nit, String nombre, String telefono, String direccion, Empleado usuarios, MovimientoDinero transacciones) {
+    public Empresa(String nit, String nombre, String telefono, String direccion, Empleado usuarios, MovimientoDinero transacciones) {
         this.nit = nit;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -38,11 +40,11 @@ public class Empresa {
     public Empresa() {
     }
 
-    public int getNit() {
+    public String getNit() {
         return nit;
     }
 
-    public void setNit(int nit) {
+    public void setNit(String nit) {
         this.nit = nit;
     }
 

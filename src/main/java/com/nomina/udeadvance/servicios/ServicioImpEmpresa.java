@@ -26,20 +26,20 @@ public class ServicioImpEmpresa implements ServicioEmpresa{
     }
     /*GET/enterprises/nit*/
     @Override
-    public Empresa consultarEmpresaPorId(Integer nit) {
-        return repositorioEmpresa.getReferenceById(String.valueOf(nit));
+    public Empresa consultarEmpresaPorId(String nit) {
+        return repositorioEmpresa.getReferenceById(nit);
     }
 
     /*DELETE/enterprises/nit*/
     @Override
-    public Empresa eliminarEmpresa(Integer nit) {
-        repositorioEmpresa.deleteById(String.valueOf(nit));
+    public Empresa eliminarEmpresa(String nit) {
+        repositorioEmpresa.deleteById(nit);
         return null;
     }
     /*PATCH/enterprises/nit*/
     @Override
-    public Empresa actualizarPorId(Integer nit, Map<Object, Object> objectMap) {
-        Empresa empresa = repositorioEmpresa.findById(String.valueOf(nit)).get();
+    public Empresa actualizarPorId(String nit, Map<Object, Object> objectMap) {
+        Empresa empresa = repositorioEmpresa.findById(nit).get();
         objectMap.forEach((key,value)->{
             Field field = ReflectionUtils.findField(Empleado.class, (String) key );
             ReflectionUtils.setField(field, empresa, value);

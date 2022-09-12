@@ -6,8 +6,6 @@ import com.nomina.udeadvance.servicios.ServicioMovimientoDinero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@Entity
-@Table(name="Movimiento_Dinero")
 
 */
 public class ControladorMovDinero {

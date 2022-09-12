@@ -1,9 +1,12 @@
 package com.nomina.udeadvance.entidades;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="Empleados")
 public class Empleado {
     @Id
