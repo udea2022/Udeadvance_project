@@ -19,13 +19,7 @@ public class ControladorEmpresa {
 
     @Autowired
     private ServicioImpEmpresa siem;
-    @GetMapping("/")
-    public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
-        if(principal!=null){
-            //System.out.print(principal.getClaims());
-        }
-        return "index";
-    }
+
     /*GET/enterprises*/
     @GetMapping("/enterprises")
         public String listar(Model modelo) {
@@ -33,13 +27,13 @@ public class ControladorEmpresa {
         return ("empresas");
     }
     /*POST/enterprises*/
-    @GetMapping("empresa/nuevo")
+    @GetMapping("empresas/nuevo")
     public String formularioRegistro(Model modelo){
         modelo.addAttribute("empresainsertar", new Empresa());
-        return "frmempresa";
+        return "frmempresas";
     }
 
-    @PostMapping("empresa/guardar")
+    @PostMapping("empresas/guardar")
     public String insertar(Empresa empresa){
         siem.guardarEmpresa(empresa);
         return "redirect:/empresas";
@@ -49,7 +43,7 @@ public class ControladorEmpresa {
     public String formularioActualizar(@PathVariable("nit")Integer nit, Model modelo){
         Empresa empresa=siem.consultarEmpresaPorId(nit);
         modelo.addAttribute("empresaactualizar", empresa);
-        return "frmactualizarempresa";
+        return "frmactualizarempresas";
     }
 
     @PostMapping("empresa/actualizar")

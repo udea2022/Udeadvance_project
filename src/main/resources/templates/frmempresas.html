@@ -10,9 +10,9 @@
 </head>
 <body>
 <fieldset class="fi">
-    <legend>REGISTRO DE USUARIOS</legend>
+    <legend>REGISTRO DE EMPRESAS</legend>
 
-    <form th:action="@{/empresa/guardar}" th:object="${empresainsertar}" method="POST" class="frm">
+    <form th:action="@{/empresas/guardar}" th:object="${empresainsertar}" method="POST" class="frm">
         <label for="nit">NIT
             <input type="text" id="nit"  required th:field="*{nit}">
         </label>
