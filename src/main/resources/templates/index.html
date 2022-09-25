@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <link rel="stylesheet" th:href="@{/css/reset.css}">
+  <title>UdeAdvance2022</title>
+</head>
+
+<body>
+<header class="contheader" id="contenca">
+  <div class="titulologo">
+    <h1 class="titulop">UdeAdvance2022</h1>
+    <div class="logo"></div>
+  </div>
+  <nav class="menu">
+    <ul>
+      <li class="lista"> <a th:href="@{usuario}">Consulta y actualizacion de usuarios</a> </li>
+      <li class="lista"> <a th:href="@{usuario/nuevo}">Registro de usuarios</a> </li>
+      <li class="lista"> <a th:href="@{empresas}">Consulta y actualizacion de empresas</a> </li>
+      <li class="lista"> <a th:href="@{empresas/nuevo}">Registro de empresas</a> </li>
+      <li class="lista"> <a th:href="@{movdinero/nuevo}">Registro de movimiento de dinero</a> </li>
+    </ul>
+  </nav>
+</header>
+
+<nav class="login">
+<div sec:authorize="!isAuthenticated()">
+  <a th:href="@{/oauth2/authorization/auth0}">Log In</a>
+</div>
+<div sec:authorize="isAuthenticated()">
+  <a th:href="@{/usuario}">Ir a la aplicacion</a>
+</div>
+</nav>
+
+<main class="main">
+  <section class="secuno">
+    <article class="art1" id="artt1">
+      <h2>Equipo 9 - Grupo 19-20 UdeA MinTic </h2>
+      <img src="" alt="">
+      <p>Presentacion trabajo final, Sprint 4.</p>
+    </article>
+    <article class="art1" id="artt1">
+      <h2>Integrantes</h2>
+      <p>Jhair Salgado Romero - jhair.s.r@gmail.com // Juan Carlos Sanchez Herrera - jucasanchez@hotmail.com // Maira Alejandra Barriga Velez - mayalebarriga@gmail.com</p>
+    </article>
+    <article class="art1" id="artt1">
+      <h2>Links de interes</h2>
+      <p>https://github.com/udea2022/Udeadvance_project // https://github.com/udea2022/Udeadvance_project/tree/main</p>
+    </article>
+  </section>
+</main>
+
+
+</body>
+</html>

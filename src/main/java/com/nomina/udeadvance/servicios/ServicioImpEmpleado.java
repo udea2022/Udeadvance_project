@@ -32,6 +32,11 @@ public class ServicioImpEmpleado implements ServicioEmpleado{
         return repositorioEmpleado.findById(documento).get();
 
     }
+
+    @Override
+    public Empleado actualizarEmpleado(Empleado empleado) {
+        return repositorioEmpleado.save(empleado);
+    }
     /*PATCH/users/documento
     @Override
     public Empleado actualizarEmpleadoPorId(Integer documento, Empleado empleado) {

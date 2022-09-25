@@ -9,6 +9,7 @@ public interface ServicioEmpleado {
     public Empleado guardarEmpleado(Empleado empleado);
     public Empleado consultarEmpleadoPorId(Integer documento);
 
+    public Empleado actualizarEmpleado(Empleado empleado);
     public void eliminarEmpleadoPorId(Integer documento);
 
     Empleado actualizarEmpleadoPorId(Integer documento, Map<Object, Object> objectMap);

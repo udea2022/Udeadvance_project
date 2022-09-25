@@ -1,0 +1,24 @@
+table{
+    background-color: gray;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: 80%;
+}
+tr{
+    background-color: plum;
+
+}
+td{
+    color: black;
+    background-color: lightblue;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
+}
+th{
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    height: 60px;
+}

@@ -10,9 +10,9 @@ public interface ServicioMovimientoDinero {
 
     public MovimientoDinero guardarMovimientoDinero(MovimientoDinero movimientoDinero);
 
-    public MovimientoDinero consultarMovimientoPorId(MovimientoDinero movimientoDinero);
+    public MovimientoDinero consultarMovimientoPorId(String id);
     public MovimientoDinero actualizarMovimientoDinero(MovimientoDinero movimientoDinero);
-    public void eliminarMovimientoDinero(Long codigo);
+    public void eliminarMovimientoDinero(String id);
 
-    MovimientoDinero actualizarPorCodigo(Long codigo, Map<Object, Object> objectMap);
+    MovimientoDinero actualizarPorCodigo(String id, Map<Object, Object> objectMap);
 }

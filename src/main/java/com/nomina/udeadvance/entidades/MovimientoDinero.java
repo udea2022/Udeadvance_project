@@ -11,8 +11,8 @@ import static javax.persistence.GenerationType.AUTO;
 public class MovimientoDinero {
     @Id
     @Column(name = "transaccion")
-    @GeneratedValue(strategy = AUTO)
-    public long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
     @Column(length = 30,nullable = false)
     public String concepto;
     @Column(name="monto", nullable = false)
@@ -33,7 +33,7 @@ public class MovimientoDinero {
         this.empresa = empresa;
     }
 
-    public MovimientoDinero(long id, double monto, String concepto, Empleado usuario, Empresa empresa) {
+    public MovimientoDinero(String id, double monto, String concepto, Empleado usuario, Empresa empresa) {
         this.id = id;
         this.monto = monto;
         this.concepto = concepto;
@@ -44,11 +44,11 @@ public class MovimientoDinero {
     public MovimientoDinero() {
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

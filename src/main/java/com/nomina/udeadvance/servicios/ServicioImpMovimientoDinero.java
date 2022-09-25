@@ -1,6 +1,7 @@
-/*package com.nomina.udeadvance.servicios;
+package com.nomina.udeadvance.servicios;
 
 import com.nomina.udeadvance.entidades.MovimientoDinero;
+import com.nomina.udeadvance.repositorio.RepositorioEmpleado;
 import com.nomina.udeadvance.repositorio.RepositorioMovDinero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,17 @@ public class ServicioImpMovimientoDinero implements ServicioMovimientoDinero {
     private RepositorioMovDinero repositorioMovDinero;
 
     @Override
-    public List<MovimientoDinero> listarMovimientoDinero(MovimientoDinero codigo) {
+    public MovimientoDinero actualizarPorCodigo(String id, Map<Object, Object> objectMap) {
+        MovimientoDinero movimientoDinero = repositorioMovDinero.findById(id).get();
+        objectMap.forEach((key, value) -> {
+            Field field = ReflectionUtils.findField(MovimientoDinero.class, (String) key);
+            ReflectionUtils.setField(field, movimientoDinero, value);
+        });
+        return repositorioMovDinero.save(movimientoDinero);
+    }
+
+    @Override
+    public List<MovimientoDinero> listarMovimientoDinero() {
         return repositorioMovDinero.findAll();
     }
 
@@ -26,27 +37,19 @@ public class ServicioImpMovimientoDinero implements ServicioMovimientoDinero {
         return repositorioMovDinero.save(movimientoDinero);
     }
 
-    public MovimientoDinero consultarMovimientoDineroPorId(MovimientoDinero codigo) {
-        return repositorioMovDinero.findById(Long).get();
+    @Override
+    public MovimientoDinero consultarMovimientoPorId(String id) {
+        return repositorioMovDinero.findById(id).get();
     }
 
     @Override
     public MovimientoDinero actualizarMovimientoDinero(MovimientoDinero movimientoDinero) {
-        return repositorioMovDinero.save(movimientoDinero);
+        return null;
     }
 
     @Override
-    public void eliminarMovimientoDinero(Long codigo) {
-        repositorioMovDinero.deleteById(codigo);
+    public void eliminarMovimientoDinero(String id) {
+        repositorioMovDinero.deleteById(id);
     }
 
-    @Override
-    public MovimientoDinero actualizarPorCodigo(Long codigo, Map<Object, Object> objectMap) {
-        MovimientoDinero movimientoDinero = repositorioMovDinero.findById(codigo).get();
-        objectMap.forEach((key, value) -> {
-            Field field = ReflectionUtils.findField(MovimientoDinero.class, (String) key);
-            ReflectionUtils.setField(field, movimientoDinero, value);
-        });
-        return repositorioMovDinero.save(movimientoDinero);
-    }
-}*/
+}

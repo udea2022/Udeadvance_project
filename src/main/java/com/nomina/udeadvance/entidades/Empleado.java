@@ -9,22 +9,22 @@ public class Empleado {
     @Id
     @Column(name="documento", nullable = false, length = 30, unique = true)
     public int documento;
+    @Column(nullable = false, length= 50)
+    public String nombre;
     @Column (nullable = false, length = 25, unique = true)
     public String correo;
     @Column (nullable = false, length = 15)
     public String rol;
-    @Column(nullable = false, length= 50)
-    public String nombre;
 
     @ManyToOne
     @JoinColumn(name = "Empresas", referencedColumnName = "nit")
     public Empresa empresa;
 
-    public Empleado(int documento, String correo, String rol, String nombre, Empresa empresa) {
+    public Empleado(int documento, String nombre, String correo, String rol,  Empresa empresa) {
         this.documento = documento;
+        this.nombre = nombre;
         this.correo = correo;
         this.rol = rol;
-        this.nombre = nombre;
         this.empresa = empresa;
     }
 

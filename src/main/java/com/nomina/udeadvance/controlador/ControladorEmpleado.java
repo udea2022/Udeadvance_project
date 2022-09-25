@@ -4,45 +4,66 @@ package com.nomina.udeadvance.controlador;
 import com.nomina.udeadvance.entidades.Empleado;
 import com.nomina.udeadvance.servicios.ServicioImpEmpleado;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/users")
-@RestController
+//@RequestMapping
+//@RestController
+@Controller
 public class ControladorEmpleado {
 
     @Autowired
     public ServicioImpEmpleado sie;
 
-    @GetMapping
-    public List<Empleado> listar() {
-        return sie.listarEmpleado();
+    @GetMapping("/")
+    public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
+        if(principal!=null){
+            //System.out.print(principal.getClaims());
+        }
+        return "index";
     }
 
-    @PostMapping
-    public Empleado guardar(@RequestBody Empleado empleado) {
-        return sie.guardarEmpleado(empleado);
+    @GetMapping("/usuario")
+    public String listar(Model modelo) {
+        modelo.addAttribute("usuario", sie.listarEmpleado());
+        return ("usuario");}
+
+        @GetMapping("usuario/nuevo")
+        public String formularioRegistro (Model modelo){
+            modelo.addAttribute("usuarioinsertar", new Empleado());
+            return "frmusuario";
+        }
+
+        @PostMapping("usuario/guardar")
+        public String insertar(Empleado empleado){
+            sie.guardarEmpleado(empleado);
+            return "redirect:/usuario";
+        }
+
+    @GetMapping("usuario/actualizar/{documento}")
+    public String formularioActualizar(@PathVariable("documento")Integer documento, Model modelo){
+        Empleado empleado=sie.consultarEmpleadoPorId(documento);
+        modelo.addAttribute("usuarioactualizar", empleado);
+        return "frmactualizar";
     }
-    /*@PatchMapping("/{documento}")
-    public Empleado actualizar(@PathVariable("documento") Integer documento ) {
-        return sie.consultarEmpleadoPorId(documento);
+
+    @PostMapping("usuario/actualizar")
+    public String actualizar( Empleado empleado){
+        sie.actualizarEmpleado(empleado);
+        return "redirect:/usuario";
     }
-    @DeleteMapping
-    public void eliminar(@RequestBody Empleado empleado) {
-        sie.eliminarEmpleado(empleado.getDocumento());
-    }*/
-    @GetMapping("/{documento}")
-    public Empleado consultar(@PathVariable("documento") Integer documento) {
-        return sie.consultarEmpleadoPorId(documento);
-    }
-    @PatchMapping("/{documento}")
-    public Empleado actualizarPor(@PathVariable("documento") Integer documento, @RequestBody Map<Object, Object> objectMap) {
-        return sie.actualizarEmpleadoPorId(documento, objectMap);
-    }
-    @DeleteMapping("/{documento}")
-    public void eliminar(@PathVariable("documento") Integer documento) {
+
+    @GetMapping("usuario/eliminar/{documento}")
+    public String eliminarporId(@PathVariable("documento") Integer documento){
         sie.eliminarEmpleadoPorId(documento);
+        return ("redirect:/usuario");
+
     }
-}
+    }
+

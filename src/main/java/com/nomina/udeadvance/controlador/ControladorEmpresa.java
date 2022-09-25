@@ -3,52 +3,65 @@ package com.nomina.udeadvance.controlador;
 import com.nomina.udeadvance.entidades.Empresa;
 import com.nomina.udeadvance.servicios.ServicioImpEmpresa;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/enterprises")
-@RestController
+//RequestMapping
+//@RestController
+@Controller
 public class ControladorEmpresa {
 
     @Autowired
     private ServicioImpEmpresa siem;
-
+    @GetMapping("/")
+    public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
+        if(principal!=null){
+            //System.out.print(principal.getClaims());
+        }
+        return "index";
+    }
     /*GET/enterprises*/
-    @GetMapping
-    public List<Empresa> listar() {
-        return siem.listarEmpresa();
+    @GetMapping("/enterprises")
+        public String listar(Model modelo) {
+        modelo.addAttribute("empresa", siem.listarEmpresa());
+        return ("empresas");
     }
     /*POST/enterprises*/
-    @PostMapping
-    public Empresa insertar (@RequestBody Empresa empresa){
-        return siem.guardarEmpresa(empresa);
+    @GetMapping("empresa/nuevo")
+    public String formularioRegistro(Model modelo){
+        modelo.addAttribute("empresainsertar", new Empresa());
+        return "frmempresa";
     }
 
-    /*@PutMapping
-    public Empresa actualizar (@RequestBody Empresa empresa){
-        return siem.actualizarEmpresa(empresa);}
-        @DeleteMapping
-    public void eliminar (@RequestBody Empresa empresa){siem.eliminarEmpresa(empresa.getNit());}*/
-
-
-    /*GET/enterprises/nit*/
-    @GetMapping("/{nit}")
-    public Empresa consultar (@PathVariable("nit") Integer nit){
-        return siem.consultarEmpresaPorId(nit);
+    @PostMapping("empresa/guardar")
+    public String insertar(Empresa empresa){
+        siem.guardarEmpresa(empresa);
+        return "redirect:/empresas";
     }
 
-    /*PATCH/enterprises/nit*/
-    @PatchMapping("/{nit}")
-    public Empresa actualizarPor(@PathVariable("nit") Integer nit, @RequestBody Map<Object, Object> objectMap){
-        return siem.actualizarPorId(nit, objectMap);
+    @GetMapping("empresa/actualizar/{nit}")
+    public String formularioActualizar(@PathVariable("nit")Integer nit, Model modelo){
+        Empresa empresa=siem.consultarEmpresaPorId(nit);
+        modelo.addAttribute("empresaactualizar", empresa);
+        return "frmactualizarempresa";
     }
 
+    @PostMapping("empresa/actualizar")
+    public String actualizar( Empresa empresa){
+        siem.guardarEmpresa(empresa);
+        return "redirect:/empresas";
+    }
 
-    /*DELETE/enterprises/nit*/
-    @DeleteMapping("/{nit}")
-    public void eliminar(@PathVariable("nit") Integer nit, @RequestBody Empresa empresa){
-        siem.eliminarEmpresa(empresa.getNit());
+    @GetMapping("empresas/eliminar/{nit}")
+    public String eliminarporId(@PathVariable("nit") Integer nit){
+        siem.consultarEmpresaPorId(nit);
+        return ("redirect:/empresas");
+
     }
 }

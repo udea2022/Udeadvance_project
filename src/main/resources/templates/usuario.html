@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/usuario.css}">
+    <title>Usuarios</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Documento </th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Rol</th>
+        <th>Empresa</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="i:${usuario}">
+        <td th:text="${i.documento}"></td>
+        <td th:text="${i.nombre}"></td>
+        <td th:text="${i.correo}"></td>
+        <td th:text="${i.rol}"></td>
+        <td th:text="${i.empresa}"></td>
+        <td><a th:href="@{'usuario/actualizar'+'/'+${i.documento}}">Consultar</a></td>
+        <td><a th:href="@{'usuario/eliminar'+'/'+${i.documento}}">Eliminar</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

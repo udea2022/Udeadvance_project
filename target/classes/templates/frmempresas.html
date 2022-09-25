@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/stylesfrm.css}">
+    <title>Document</title>
+</head>
+<body>
+<fieldset class="fi">
+    <legend>REGISTRO DE USUARIOS</legend>
+
+    <form th:action="@{/empresa/guardar}" th:object="${empresainsertar}" method="POST" class="frm">
+        <label for="nit">NIT
+            <input type="text" id="nit"  required th:field="*{nit}">
+        </label>
+        <label for="nom">Nombre
+            <input type="text" id="nom"  th:field="*{nombre}">
+        </label>
+        <label for="tel">Telefono
+            <input type="text" id="tel"  th:field="*{telefono}">
+        </label>
+        <label for="dir">Direccion
+            <input type="text" id="dir"  th:field="*{direccion}">
+        </label>
+
+        <input class="boton" type="submit" value="Registrar">
+
+
+    </form>
+
+</fieldset>
+</body>
+</html>
